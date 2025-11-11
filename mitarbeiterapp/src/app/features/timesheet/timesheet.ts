@@ -102,6 +102,13 @@ export class Timesheet implements OnInit, OnDestroy {
   }
 
   /**
+   * Update customer email
+   */
+  onCustomerEmailChange(email: string): void {
+    this.weekService.updateCustomerEmail(email);
+  }
+
+  /**
    * Open shift config modal
    */
   onOpenShiftConfig(): void {
