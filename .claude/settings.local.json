@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx ng serve:*)",
+      "Bash(npx tsc:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init)",
+      "Bash(ng generate:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm start)",
+      "Bash(npm start:*)",
+      "Bash(copy \"D:\\DEV AKADEMIE\\PROJEKTE\\timesheet\\timesheet\\public\\assets\\logo-westfalia.png\" \"c:\\Dev\\mitarbeiterApp\\mitarbeiterApp\\mitarbeiterapp\\public\\assets\\logo-westfalia.png\")",
+      "Bash(npx ng:*)",
+      "Bash(dir:*)",
+      "Bash(copy:*)",
+      "Bash(git add:*)",
+      "Bash(git init:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nImplement shift configuration modal and fix translations\n\nFeatures:\n- Add shift config modal for selecting shift model and configuring times for entire week\n- Convert shift dropdown to clickable button that opens modal\n- Day cards now default to closed state\n- Implement shift selection logic with applyShiftConfigToWeek\n\nComponents:\n- Create ShiftConfigModal component with shift selection, time inputs, and day selection\n- Update ShiftDropdown to trigger modal instead of direct selection\n- Integrate modal into Timesheet component with proper event handling\n\nTranslations:\n- Add missing translation keys for shift configuration (shift.configureShift, shift.workTimes, shift.selectDays)\n- Add actions.apply translation for modal apply button\n- Copy all translation files from src/assets/i18n to public/assets/i18n to fix loading issue\n\nFixes:\n- Fix ngModel bindings in welcome form (was ngmodel, now [(ngModel)])\n- Fix ngSubmit binding in welcome form (was ngsubmit, now (ngSubmit))\n- Fix translation file loading by ensuring all files are in public/assets/i18n/\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@angular/common": "^20.3.10",
+    "@angular/compiler": "^20.3.10",
+    "@angular/core": "^20.3.10"
+  }
+}
