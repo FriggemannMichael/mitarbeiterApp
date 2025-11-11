@@ -20,4 +20,11 @@
     <!-- Welcome/Onboarding Screen -->
     <app-welcome (complete)="onOnboardingComplete()" />
   }
+
+  <!-- Desktop Warning Modal -->
+  <app-desktop-warning-modal
+    [isOpen]="showDesktopWarning()"
+    (close)="onCloseDesktopWarning()"
+    (neverShowAgain)="onNeverShowDesktopWarning()"
+  />
 }

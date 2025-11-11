@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Welcome } from './features/welcome/welcome';
 import { Timesheet } from './features/timesheet/timesheet';
+import { DesktopWarningModal } from './shared/components/desktop-warning-modal/desktop-warning-modal';
 import { StorageService } from './core/services/storage.service';
+import { DeviceDetectionService } from './core/services/device-detection.service';
 
 /**
  * Root App Component
@@ -11,7 +13,7 @@ import { StorageService } from './core/services/storage.service';
  */
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, TranslateModule, Welcome, Timesheet],
+  imports: [CommonModule, TranslateModule, Welcome, Timesheet, DesktopWarningModal],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -20,10 +22,12 @@ export class App implements OnInit {
 
   isOnboarded = signal(false);
   loading = signal(true);
+  showDesktopWarning = signal(false);
 
   constructor(
     private storage: StorageService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private deviceDetection: DeviceDetectionService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +42,9 @@ export class App implements OnInit {
 
     // Set first use date
     this.storage.setFirstUseDate();
+
+    // Check if desktop warning should be shown
+    this.showDesktopWarning.set(this.deviceDetection.shouldShowDesktopWarning());
   }
 
   private checkOnboardingStatus(): void {
@@ -56,5 +63,14 @@ export class App implements OnInit {
   onLogout(): void {
     this.storage.clearAllData();
     this.isOnboarded.set(false);
+  }
+
+  onCloseDesktopWarning(): void {
+    this.showDesktopWarning.set(false);
+  }
+
+  onNeverShowDesktopWarning(): void {
+    this.deviceDetection.dismissDesktopWarning();
+    this.showDesktopWarning.set(false);
   }
 }
