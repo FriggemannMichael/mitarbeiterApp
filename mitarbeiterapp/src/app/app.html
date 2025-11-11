@@ -1,0 +1,23 @@
+<!-- Loading Screen -->
+@if (loading()) {
+  <div class="min-h-screen gradient-bg flex items-center justify-center">
+    <div class="text-center">
+      <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <h1 class="text-2xl font-bold text-gray-900 mb-2">
+        {{ 'welcome.title' | translate }}
+      </h1>
+      <p class="text-gray-600">{{ 'status.loading' | translate }}</p>
+    </div>
+  </div>
+}
+
+<!-- Main App Content -->
+@if (!loading()) {
+  @if (isOnboarded()) {
+    <!-- Timesheet Component -->
+    <app-timesheet (logout)="onLogout()" />
+  } @else {
+    <!-- Welcome/Onboarding Screen -->
+    <app-welcome (complete)="onOnboardingComplete()" />
+  }
+}

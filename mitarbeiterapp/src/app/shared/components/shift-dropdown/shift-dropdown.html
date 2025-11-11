@@ -1,0 +1,20 @@
+<div class="card p-4">
+  <label class="block text-sm font-medium text-gray-700 mb-2">
+    {{ 'shift.selectModel' | translate }}
+  </label>
+  <button
+    type="button"
+    (click)="onOpenConfig()"
+    [disabled]="!isEditable()"
+    class="w-full px-4 py-3 rounded-lg border-2 transition-colors text-left flex items-center justify-between hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed"
+    [class.border-primary]="currentModel()"
+    [class.border-gray-300]="!currentModel()"
+  >
+    <div class="flex items-center space-x-2">
+      <span class="text-gray-900 font-medium">
+        {{ 'shift.' + currentModel() + '.name' | translate }}
+      </span>
+    </div>
+    <span class="text-gray-400">▼</span>
+  </button>
+</div>
