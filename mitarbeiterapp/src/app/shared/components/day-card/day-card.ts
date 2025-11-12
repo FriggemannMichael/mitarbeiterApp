@@ -22,27 +22,15 @@ export class DayCard {
   isEditable = input<boolean>(true);
 
   // Output events
-  timeChange = output<{ dayIndex: number; field: keyof DayData; value: string }>();
-
-  // Track collapsed state - default closed
-  isCollapsed = true;
+  openTimeModal = output<number>(); // Emit day index when clicked
 
   /**
-   * Toggle collapse state
+   * Open time entry modal
    */
-  toggleCollapse(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
-  /**
-   * Handle time field change
-   */
-  onTimeChange(field: keyof DayData, value: string): void {
-    this.timeChange.emit({
-      dayIndex: this.dayIndex(),
-      field,
-      value,
-    });
+  openModal(): void {
+    if (this.isEditable()) {
+      this.openTimeModal.emit(this.dayIndex());
+    }
   }
 
   /**

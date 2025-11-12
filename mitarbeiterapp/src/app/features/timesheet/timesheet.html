@@ -81,7 +81,7 @@
           [dayName]="getDayNames()[i]"
           [dayIndex]="i"
           [isEditable]="isEditable"
-          (timeChange)="onDayTimeChange($event)"
+          (openTimeModal)="onOpenDayTimeModal($event)"
         />
       }
 
@@ -156,6 +156,18 @@
     (close)="onCloseShiftConfig()"
     (apply)="onApplyShiftConfig($event)"
   />
+
+  <!-- Day Time Modal -->
+  @if (showDayTimeModal && selectedDayIndex >= 0) {
+    <app-day-time-modal
+      [isOpen]="showDayTimeModal"
+      [day]="weekData.days[selectedDayIndex]"
+      [dayName]="getDayNames()[selectedDayIndex]"
+      [isEditable]="isEditable"
+      (close)="onCloseDayTimeModal()"
+      (save)="onSaveDayTime($event)"
+    />
+  }
 
   <!-- Share Modal -->
   <app-share-modal

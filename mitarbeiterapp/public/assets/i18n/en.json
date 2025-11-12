@@ -30,6 +30,7 @@
   "timesheet.total": "Total",
   "day.from": "From",
   "day.to": "To",
+  "day.workTimes": "Working Hours",
   "day.breaks": "Breaks",
   "day.pause1": "Break 1",
   "day.pause2": "Break 2",

@@ -9,8 +9,9 @@ import { DayCard } from '../../shared/components/day-card/day-card';
 import { SignaturePad } from '../../shared/components/signature-pad/signature-pad';
 import { ShiftDropdown } from '../../shared/components/shift-dropdown/shift-dropdown';
 import { ShiftConfigModal } from '../../shared/components/shift-config-modal/shift-config-modal';
+import { DayTimeModal } from '../../shared/components/day-time-modal/day-time-modal';
 import { ShareModal } from '../../shared/components/share-modal/share-modal';
-import { WeekData, ShiftModel, ShiftConfig } from '../../core/models/timesheet.model';
+import { WeekData, ShiftModel, ShiftConfig, DayData } from '../../core/models/timesheet.model';
 import { ConfigUtils } from '../../core/config/app.config.model';
 
 /**
@@ -19,7 +20,7 @@ import { ConfigUtils } from '../../core/config/app.config.model';
  */
 @Component({
   selector: 'app-timesheet',
-  imports: [CommonModule, FormsModule, TranslateModule, DayCard, SignaturePad, ShiftDropdown, ShiftConfigModal, ShareModal],
+  imports: [CommonModule, FormsModule, TranslateModule, DayCard, SignaturePad, ShiftDropdown, ShiftConfigModal, DayTimeModal, ShareModal],
   templateUrl: './timesheet.html',
   styleUrl: './timesheet.scss',
 })
@@ -42,6 +43,10 @@ export class Timesheet implements OnInit, OnDestroy {
 
   // Shift Config Modal State
   showShiftConfigModal = false;
+
+  // Day Time Modal State
+  showDayTimeModal = false;
+  selectedDayIndex = -1;
 
   private subscriptions: Subscription[] = [];
 
@@ -92,6 +97,36 @@ export class Timesheet implements OnInit, OnDestroy {
    */
   onDayTimeChange(event: { dayIndex: number; field: string; value: string }): void {
     this.weekService.updateDayTime(event.dayIndex, event.field as any, event.value);
+  }
+
+  /**
+   * Open day time modal
+   */
+  onOpenDayTimeModal(dayIndex: number): void {
+    this.selectedDayIndex = dayIndex;
+    this.showDayTimeModal = true;
+  }
+
+  /**
+   * Close day time modal
+   */
+  onCloseDayTimeModal(): void {
+    this.showDayTimeModal = false;
+    this.selectedDayIndex = -1;
+  }
+
+  /**
+   * Save day time from modal
+   */
+  onSaveDayTime(updatedDay: DayData): void {
+    this.weekService.updateDayTime(this.selectedDayIndex, 'from', updatedDay.from);
+    this.weekService.updateDayTime(this.selectedDayIndex, 'to', updatedDay.to);
+    this.weekService.updateDayTime(this.selectedDayIndex, 'pause1From', updatedDay.pause1From);
+    this.weekService.updateDayTime(this.selectedDayIndex, 'pause1To', updatedDay.pause1To);
+    this.weekService.updateDayTime(this.selectedDayIndex, 'pause2From', updatedDay.pause2From);
+    this.weekService.updateDayTime(this.selectedDayIndex, 'pause2To', updatedDay.pause2To);
+    this.showDayTimeModal = false;
+    this.selectedDayIndex = -1;
   }
 
   /**

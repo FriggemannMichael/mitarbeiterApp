@@ -1,11 +1,10 @@
-<div class="card p-4 mb-3">
-  <!-- Card Header -->
-  <button
-    type="button"
-    (click)="toggleCollapse()"
-    class="w-full flex items-center justify-between text-left"
-    [class.mb-4]="!isCollapsed"
-  >
+<button
+  type="button"
+  (click)="openModal()"
+  [disabled]="!isEditable()"
+  class="card p-4 mb-3 w-full text-left hover:shadow-md transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  <div class="flex items-center justify-between">
     <div class="flex items-center space-x-3">
       <!-- Day indicator -->
       <div
@@ -32,90 +31,7 @@
         <p class="font-semibold text-gray-900">{{ day().hours }}</p>
         <p class="text-xs text-gray-500">{{ day().decimal }}h</p>
       </div>
-      <span class="text-gray-400">{{ isCollapsed ? '▼' : '▲' }}</span>
+      <span class="text-gray-400">▶</span>
     </div>
-  </button>
-
-  <!-- Card Content (Collapsible) -->
-  @if (!isCollapsed) {
-    <div class="space-y-4">
-      <!-- Work time -->
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            {{ 'day.from' | translate }}
-          </label>
-          <input
-            type="time"
-            [value]="day().from"
-            (input)="onTimeChange('from', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            class="input-field disabled:bg-gray-100"
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            {{ 'day.to' | translate }}
-          </label>
-          <input
-            type="time"
-            [value]="day().to"
-            (input)="onTimeChange('to', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            class="input-field disabled:bg-gray-100"
-          />
-        </div>
-      </div>
-
-      <!-- Pause 1 -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          {{ 'day.pause1' | translate }}
-        </label>
-        <div class="grid grid-cols-2 gap-3">
-          <input
-            type="time"
-            [value]="day().pause1From"
-            (input)="onTimeChange('pause1From', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            [placeholder]="'day.from' | translate"
-            class="input-field disabled:bg-gray-100"
-          />
-          <input
-            type="time"
-            [value]="day().pause1To"
-            (input)="onTimeChange('pause1To', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            [placeholder]="'day.to' | translate"
-            class="input-field disabled:bg-gray-100"
-          />
-        </div>
-      </div>
-
-      <!-- Pause 2 -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          {{ 'day.pause2' | translate }}
-        </label>
-        <div class="grid grid-cols-2 gap-3">
-          <input
-            type="time"
-            [value]="day().pause2From"
-            (input)="onTimeChange('pause2From', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            [placeholder]="'day.from' | translate"
-            class="input-field disabled:bg-gray-100"
-          />
-          <input
-            type="time"
-            [value]="day().pause2To"
-            (input)="onTimeChange('pause2To', $any($event.target).value)"
-            [disabled]="!isEditable()"
-            [placeholder]="'day.to' | translate"
-            class="input-field disabled:bg-gray-100"
-          />
-        </div>
-      </div>
-    </div>
-  }
-</div>
+  </div>
+</button>

@@ -1,0 +1,138 @@
+@if (isOpen()) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+    (click)="onBackdropClick($event)"
+  >
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <!-- Header -->
+      <div class="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">
+            {{ dayName() | translate }}
+          </h2>
+          <p class="text-sm text-gray-500">{{ formatDate() }}</p>
+        </div>
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+        >
+          ×
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6 space-y-6">
+        <!-- Work Time -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-900 mb-3">
+            {{ 'day.workTimes' | translate }}
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {{ 'day.from' | translate }}
+              </label>
+              <input
+                type="time"
+                [(ngModel)]="editedDay.from"
+                [disabled]="!isEditable()"
+                class="input-field disabled:bg-gray-100"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {{ 'day.to' | translate }}
+              </label>
+              <input
+                type="time"
+                [(ngModel)]="editedDay.to"
+                [disabled]="!isEditable()"
+                class="input-field disabled:bg-gray-100"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Pause 1 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            {{ 'day.pause1' | translate }}
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <input
+              type="time"
+              [(ngModel)]="editedDay.pause1From"
+              [disabled]="!isEditable()"
+              [placeholder]="'day.from' | translate"
+              class="input-field disabled:bg-gray-100"
+            />
+            <input
+              type="time"
+              [(ngModel)]="editedDay.pause1To"
+              [disabled]="!isEditable()"
+              [placeholder]="'day.to' | translate"
+              class="input-field disabled:bg-gray-100"
+            />
+          </div>
+        </div>
+
+        <!-- Pause 2 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            {{ 'day.pause2' | translate }}
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <input
+              type="time"
+              [(ngModel)]="editedDay.pause2From"
+              [disabled]="!isEditable()"
+              [placeholder]="'day.from' | translate"
+              class="input-field disabled:bg-gray-100"
+            />
+            <input
+              type="time"
+              [(ngModel)]="editedDay.pause2To"
+              [disabled]="!isEditable()"
+              [placeholder]="'day.to' | translate"
+              class="input-field disabled:bg-gray-100"
+            />
+          </div>
+        </div>
+
+        <!-- Night Shift Info -->
+        @if (editedDay.isNightShift) {
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-blue-800 text-sm font-medium">
+                {{ 'day.nightShift' | translate }}
+              </span>
+            </div>
+            <p class="text-xs text-blue-600 mt-1">
+              {{ 'day.nightShiftHelp' | translate }}
+            </p>
+          </div>
+        }
+      </div>
+
+      <!-- Footer -->
+      <div class="sticky bottom-0 bg-gray-50 px-6 py-4 flex gap-3 border-t">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 font-medium"
+        >
+          {{ 'actions.cancel' | translate }}
+        </button>
+        <button
+          type="button"
+          (click)="onSave()"
+          [disabled]="!isEditable()"
+          class="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {{ 'actions.save' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
