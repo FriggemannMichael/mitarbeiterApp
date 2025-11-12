@@ -1,0 +1,54 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.contact.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="contacts-list">
+        @for (contact of contacts; track contact.email) {
+          <div class="contact-card">
+            <div class="contact-info">
+              <h3 class="contact-name">{{ contact.name }}</h3>
+              <p class="contact-role">{{ contact.role | translate }}</p>
+              @if (contact.email) {
+                <p class="contact-detail">📧 {{ contact.email }}</p>
+              }
+              @if (contact.phone) {
+                <p class="contact-detail">📞 {{ contact.phone }}</p>
+              }
+            </div>
+
+            <div class="contact-actions">
+              @if (contact.email) {
+                <button class="contact-btn email" (click)="onEmail(contact.email!)">
+                  📧 {{ 'dashboard.modals.contact.email' | translate }}
+                </button>
+              }
+              @if (contact.phone) {
+                <button class="contact-btn phone" (click)="onCall(contact.phone!)">
+                  📞 {{ 'dashboard.modals.contact.call' | translate }}
+                </button>
+                <button class="contact-btn whatsapp" (click)="onWhatsApp(contact.phone!)">
+                  💬 WhatsApp
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

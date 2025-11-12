@@ -1,0 +1,69 @@
+@import '../modal-base.scss';
+
+.help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.help-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.help-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f9fafb;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+
+  &.expanded {
+    background: #eff6ff;
+  }
+}
+
+.question-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  flex: 1;
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  line-height: 1;
+  margin-left: 0.5rem;
+}
+
+.help-answer {
+  padding: 1rem;
+  background: white;
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-top: 1px solid #e5e7eb;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}

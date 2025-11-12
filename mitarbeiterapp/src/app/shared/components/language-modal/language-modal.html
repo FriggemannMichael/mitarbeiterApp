@@ -1,0 +1,37 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.language.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="language-grid">
+        @for (language of languages; track language.code) {
+          <button
+            class="language-btn"
+            [class.selected]="currentLanguage === language.code"
+            (click)="onSelectLanguage(language.code)"
+          >
+            <span class="language-flag">{{ language.flag }}</span>
+            <span class="language-name">{{ language.name }}</span>
+            @if (currentLanguage === language.code) {
+              <span class="selected-icon">✓</span>
+            }
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

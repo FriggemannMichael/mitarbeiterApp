@@ -1,0 +1,41 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.help.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="help-list">
+        @for (item of helpItems; track $index) {
+          <div class="help-item">
+            <button
+              class="help-question"
+              (click)="toggleItem($index)"
+              [class.expanded]="item.expanded"
+            >
+              <span class="question-text">{{ item.questionKey | translate }}</span>
+              <span class="toggle-icon">{{ item.expanded ? '−' : '+' }}</span>
+            </button>
+            @if (item.expanded) {
+              <div class="help-answer">
+                {{ item.answerKey | translate }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

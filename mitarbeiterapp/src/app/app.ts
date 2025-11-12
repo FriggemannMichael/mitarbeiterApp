@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Welcome } from './features/welcome/welcome';
+import { Dashboard } from './features/dashboard/dashboard';
 import { Timesheet } from './features/timesheet/timesheet';
 import { DesktopWarningModal } from './shared/components/desktop-warning-modal/desktop-warning-modal';
 import { StorageService } from './core/services/storage.service';
@@ -13,7 +14,7 @@ import { DeviceDetectionService } from './core/services/device-detection.service
  */
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, TranslateModule, Welcome, Timesheet, DesktopWarningModal],
+  imports: [CommonModule, TranslateModule, Welcome, Dashboard, Timesheet, DesktopWarningModal],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -21,6 +22,7 @@ export class App implements OnInit {
   protected readonly title = signal('mitarbeiterapp');
 
   isOnboarded = signal(false);
+  showDashboard = signal(false);
   loading = signal(true);
   showDesktopWarning = signal(false);
 
@@ -58,11 +60,21 @@ export class App implements OnInit {
 
   onOnboardingComplete(): void {
     this.isOnboarded.set(true);
+    this.showDashboard.set(true);
+  }
+
+  onNavigateToTimesheet(): void {
+    this.showDashboard.set(false);
+  }
+
+  onBackToDashboard(): void {
+    this.showDashboard.set(true);
   }
 
   onLogout(): void {
     this.storage.clearAllData();
     this.isOnboarded.set(false);
+    this.showDashboard.set(false);
   }
 
   onCloseDesktopWarning(): void {

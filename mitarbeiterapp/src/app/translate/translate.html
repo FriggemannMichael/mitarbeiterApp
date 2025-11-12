@@ -1,6 +1,14 @@
-<div>
-  <h2>{{ 'TITLE' | translate }}</h2>
-  <button type="button" (click)="switchLang('de')">Deutsch</button>
-  <button type="button" (click)="switchLang('en')">Englisch</button>
-  <p>{{ 'HELLO' | translate }}</p>
+<div class="translate-container">
+  <h2 class="translate-title">{{ 'TITLE' | translate }}</h2>
+  <p class="translate-text">{{ 'HELLO' | translate }}</p>
+
+  <!-- Floating Action Button für Sprache wechseln -->
+  <div class="fab-container">
+    <button class="fab" (click)="switchLang('de')" aria-label="Deutsch">
+      <span>DE</span>
+    </button>
+    <button class="fab" (click)="switchLang('en')" aria-label="Englisch">
+      <span>EN</span>
+    </button>
+  </div>
 </div>

@@ -24,19 +24,21 @@
       </h3>
       <div class="space-y-2">
         @for (step of [1, 2, 3, 4, 5]; track step) {
-          <div class="flex items-center text-sm text-blue-800">
-            <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 text-xs font-medium">
-              {{ step }}
-            </div>
-            {{ 'welcome.instructions.step' + step.toString() | translate }}
+        <div class="flex items-center text-sm text-blue-800">
+          <div
+            class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 text-xs font-medium"
+          >
+            {{ step }}
           </div>
+          {{ 'welcome.instructions.step' + step.toString() | translate }}
+        </div>
         }
       </div>
     </div>
 
     <!-- Main Form -->
     <div class="card p-6 mb-6">
-  <form (ngSubmit)="onSubmit($event)" class="space-y-6">
+      <form (ngSubmit)="onSubmit($event)" class="space-y-6">
         <!-- Language Selection -->
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -57,21 +59,23 @@
 
             <!-- Language Dropdown -->
             @if (showLanguageDropdown) {
-              <div class="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 z-10">
-                @for (lang of languages; track lang.code) {
-                  <button
-                    type="button"
-                    (click)="selectLanguage(lang.code)"
-                    class="w-full px-3 py-2 text-left hover:bg-gray-50 flex items-center space-x-3 first:rounded-t-lg last:rounded-b-lg transition-colors"
-                  >
-                    <span class="text-xl">{{ lang.flag }}</span>
-                    <span>{{ lang.name }}</span>
-                    @if (lang.code === selectedLanguage) {
-                      <span class="ml-auto text-primary">✓</span>
-                    }
-                  </button>
+            <div
+              class="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 z-10"
+            >
+              @for (lang of languages; track lang.code) {
+              <button
+                type="button"
+                (click)="selectLanguage(lang.code)"
+                class="w-full px-3 py-2 text-left hover:bg-gray-50 flex items-center space-x-3 first:rounded-t-lg last:rounded-b-lg transition-colors"
+              >
+                <span class="text-xl">{{ lang.flag }}</span>
+                <span>{{ lang.name }}</span>
+                @if (lang.code === selectedLanguage) {
+                <span class="ml-auto text-primary">✓</span>
                 }
-              </div>
+              </button>
+              }
+            </div>
             }
           </div>
         </div>
@@ -90,7 +94,7 @@
               [placeholder]="'welcome.placeholders.firstName' | translate"
             />
             @if (errors.firstName) {
-              <p class="text-red-500 text-sm mt-1">{{ errors.firstName }}</p>
+            <p class="text-red-500 text-sm mt-1">{{ errors.firstName }}</p>
             }
           </div>
 
@@ -106,7 +110,7 @@
               [placeholder]="'welcome.placeholders.lastName' | translate"
             />
             @if (errors.lastName) {
-              <p class="text-red-500 text-sm mt-1">{{ errors.lastName }}</p>
+            <p class="text-red-500 text-sm mt-1">{{ errors.lastName }}</p>
             }
           </div>
         </div>
@@ -128,11 +132,11 @@
           </button>
 
           @if (showPrivacy) {
-            <div class="mt-4 pt-4 border-t border-gray-100">
-              <p class="text-sm text-gray-600 leading-relaxed">
-                {{ 'welcome.privacy.text' | translate }}
-              </p>
-            </div>
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              {{ 'welcome.privacy.text' | translate }}
+            </p>
+          </div>
           }
         </div>
 
@@ -150,7 +154,7 @@
             </span>
           </label>
           @if (errors.consent) {
-            <p class="text-red-500 text-sm mt-1">{{ errors.consent }}</p>
+          <p class="text-red-500 text-sm mt-1">{{ errors.consent }}</p>
           }
         </div>
 
@@ -167,7 +171,7 @@
 
     <!-- Footer -->
     <div class="text-center text-sm text-gray-500">
-      <p>{{ 'footer.version' | translate: { version: appVersion } }}</p>
+      <p>{{ 'footer.version' | translate : { version: appVersion } }}</p>
       <p>{{ 'footer.features' | translate }}</p>
     </div>
   </div>

@@ -1,0 +1,65 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.upload.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      @if (!selectedFile()) {
+        <div class="upload-options">
+          <button class="upload-btn camera" (click)="onCamera()">
+            <span class="upload-icon">📷</span>
+            <span class="upload-label">{{ 'dashboard.modals.upload.camera' | translate }}</span>
+          </button>
+
+          <label class="upload-btn file">
+            <span class="upload-icon">📁</span>
+            <span class="upload-label">{{ 'dashboard.modals.upload.selectFile' | translate }}</span>
+            <input
+              type="file"
+              (change)="onFileSelect($event)"
+              accept="image/*,application/pdf,.doc,.docx"
+              hidden
+            />
+          </label>
+        </div>
+      } @else {
+        <div class="file-preview">
+          @if (previewUrl()) {
+            <img [src]="previewUrl()!" alt="Preview" class="preview-image" />
+          }
+
+          <div class="file-info">
+            <p class="file-name">{{ selectedFile()!.name }}</p>
+            <p class="file-size">{{ (selectedFile()!.size / 1024).toFixed(2) }} KB</p>
+          </div>
+
+          <div class="send-options">
+            <button class="send-btn email" (click)="onSendEmail()">
+              📧 {{ 'dashboard.modals.upload.sendEmail' | translate }}
+            </button>
+            <button class="send-btn whatsapp" (click)="onSendWhatsApp()">
+              💬 {{ 'dashboard.modals.upload.sendWhatsApp' | translate }}
+            </button>
+          </div>
+
+          <button class="clear-btn" (click)="onClear()">
+            {{ 'dashboard.modals.upload.clear' | translate }}
+          </button>
+        </div>
+      }
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

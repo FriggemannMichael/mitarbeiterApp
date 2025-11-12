@@ -1,0 +1,53 @@
+.translate-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+}
+
+.translate-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.translate-text {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.fab-container {
+  display: flex;
+  gap: 1.5rem;
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+}
+
+.fab {
+  background: linear-gradient(135deg, #007aff 60%, #00c6fb 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.fab:active {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}

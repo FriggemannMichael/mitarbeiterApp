@@ -1,0 +1,55 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.monthOverview.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      @if (monthSummary) {
+        <div class="month-header">
+          <h3>{{ getMonthName() }}</h3>
+        </div>
+
+        <div class="overview-card">
+          <div class="overview-item">
+            <span class="overview-label">{{ 'dashboard.modals.monthOverview.totalHours' | translate }}</span>
+            <span class="overview-value highlight">{{ monthSummary.totalHours }} h</span>
+          </div>
+
+          <div class="overview-item">
+            <span class="overview-label">{{ 'dashboard.modals.monthOverview.expectedHours' | translate }}</span>
+            <span class="overview-value">{{ monthSummary.expectedHours }} h</span>
+          </div>
+
+          <div class="overview-item">
+            <span class="overview-label">{{ 'dashboard.modals.monthOverview.difference' | translate }}</span>
+            <span class="overview-value" [class.positive]="getDifference() >= 0" [class.negative]="getDifference() < 0">
+              {{ getDifference() > 0 ? '+' : '' }}{{ getDifference() }} h
+            </span>
+          </div>
+
+          <div class="overview-item">
+            <span class="overview-label">{{ 'dashboard.modals.monthOverview.daysWorked' | translate }}</span>
+            <span class="overview-value">{{ monthSummary.daysWorked }}</span>
+          </div>
+        </div>
+      } @else {
+        <p class="text-center text-gray-600">
+          {{ 'dashboard.modals.monthOverview.noData' | translate }}
+        </p>
+      }
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

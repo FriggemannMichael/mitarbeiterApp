@@ -14,8 +14,16 @@
 <!-- Main App Content -->
 @if (!loading()) {
   @if (isOnboarded()) {
-    <!-- Timesheet Component -->
-    <app-timesheet (logout)="onLogout()" />
+    @if (showDashboard()) {
+      <!-- Dashboard Component -->
+      <app-dashboard
+        (navigateToTimesheet)="onNavigateToTimesheet()"
+        (logout)="onLogout()"
+      />
+    } @else {
+      <!-- Timesheet Component -->
+      <app-timesheet (logout)="onBackToDashboard()" />
+    }
   } @else {
     <!-- Welcome/Onboarding Screen -->
     <app-welcome (complete)="onOnboardingComplete()" />

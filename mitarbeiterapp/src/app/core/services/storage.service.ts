@@ -89,6 +89,28 @@ export class StorageService {
     return keys;
   }
 
+  /**
+   * Get all week data objects
+   */
+  getAllWeeks(): WeekData[] {
+    const weeks: WeekData[] = [];
+    const keys = this.getAllWeekKeys();
+
+    keys.forEach(key => {
+      const weekDataStr = localStorage.getItem(key);
+      if (weekDataStr) {
+        try {
+          const weekData = JSON.parse(weekDataStr) as WeekData;
+          weeks.push(weekData);
+        } catch (error) {
+          console.error('Error parsing week data:', error);
+        }
+      }
+    });
+
+    return weeks;
+  }
+
   // ============ Backup & Restore ============
   setLastBackupDate(date: Date): void {
     localStorage.setItem(STORAGE_KEYS.LAST_BACKUP_DATE, date.toISOString());

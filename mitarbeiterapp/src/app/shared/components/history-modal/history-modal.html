@@ -1,0 +1,44 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">{{ 'dashboard.modals.history.title' | translate }}</h2>
+      <button class="modal-close" (click)="onClose()">
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      @if (history.length > 0) {
+        <div class="history-list">
+          @for (entry of history; track entry.week + '-' + entry.year) {
+            <div class="history-item">
+              <div class="history-header">
+                <div class="history-week">
+                  <span class="week-label">{{ 'timesheet.week' | translate }} {{ entry.week }}/{{ entry.year }}</span>
+                  @if (entry.signed) {
+                    <span class="signed-badge">✓ {{ 'dashboard.modals.history.signed' | translate }}</span>
+                  }
+                </div>
+                <span class="history-hours">{{ entry.totalHours }} h</span>
+              </div>
+              <div class="history-date">{{ entry.dateRange }}</div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="text-center text-gray-600">
+          {{ 'dashboard.modals.history.noData' | translate }}
+        </p>
+      }
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onClose()">
+        {{ 'actions.close' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
@@ -15,12 +19,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(
       TranslateModule.forRoot({
-        fallbackLang: 'de'
+        fallbackLang: 'de',
       })
     ),
     provideTranslateHttpLoader({
       prefix: './assets/i18n/',
-      suffix: '.json'
-    })
-  ]
+      suffix: '.json',
+    }),
+  ],
 };
